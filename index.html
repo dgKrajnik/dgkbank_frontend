@@ -7,12 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./pure-min.css" type="text/css">
         <link rel="stylesheet" href="./stuff.css" type="text/css">
+        <script defer=true type="text/javascript" src="./endpoints.js"></script>
         <script defer=true type="text/javascript" src="./stuff.js"></script>
     </head>
     <body>
         <div class="pure-g">
-            <h1 class="pure-u-1" id="pageheader"></h1>
+            <h1 class="pure-u-1" id="pageheader">--</h1>
             <div class="pure-u-1" id="errorcontainer" hidden></div>
+            <div class="pure-u-1" id="successcontainer" style="opacity: 0">Placeholder</div>
             <div class="pure-u-11-24 pure-g" id="tokenview">
                 <div class="pure-u-1 pure-form pure-form-aligned">
                     <label for="tokenmenu">Token</label>
@@ -21,7 +23,7 @@
                     <button class="pure-button" id="reloadbutton">Reload Tokens</button>
                 </div>
                 <div class="pure-u-1">
-                    <textarea id="apidump" readonly="true"></textarea>
+                    <textarea id="tokendisplay" readonly="true"></textarea>
                 </div>
             </div>
             <div class="pure-u-2-24"><div id="separator"></div></div>

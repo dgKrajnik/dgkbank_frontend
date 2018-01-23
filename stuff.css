@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-#apidump {
+#tokendisplay {
     width: 100%;
     height: 20em;
     resize: none;
@@ -18,6 +18,18 @@
     border-bottom: 3px solid #ae5055;
     padding: 0.5em;
     background-color: #c45b60;
+}
+
+#successcontainer {
+    box-sizing: border-box;
+    margin: 1.5em 0em;
+    color: #fff;
+    font-size: 1.4em;
+    border-top: 3px solid #4e774f;
+    border-bottom: 3px solid #4e774f;
+    padding: 0.5em;
+    background-color: #59875a;
+    transition: opacity 500ms;
 }
 
 #separator {
