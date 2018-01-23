@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Daniel Corda Net</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./pure-min.css" type="text/css">
+        <link rel="stylesheet" href="./stuff.css" type="text/css">
+        <script defer=true type="text/javascript" src="./stuff.js"></script>
+    </head>
+    <body>
+        <div class="pure-g">
+            <h1 class="pure-u-1" id="pageheader"></h1>
+            <div class="pure-u-1" id="errorcontainer" hidden></div>
+            <div class="pure-u-11-24 pure-g" id="tokenview">
+                <div class="pure-u-1 pure-form pure-form-aligned">
+                    <label for="tokenmenu">Token</label>
+                    <select class="pure-input-3-4" id="tokenmenu">
+                    </select>
+                    <button class="pure-button" id="reloadbutton">Reload Tokens</button>
+                </div>
+                <div class="pure-u-1">
+                    <textarea id="apidump" readonly="true"></textarea>
+                </div>
+            </div>
+            <div class="pure-u-2-24"><div id="separator"></div></div>
+            <div class="pure-u-11-24 pure-g" id="actions">
+                <div class="pure-u-1-2 pure-menu pure-menu-horizontal">
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                            <span id="actionlabel" class="pure-menu-link">Actions</span>
+                            <ul class="pure-menu-children">
+                                <li class="pure-menu-item" id="issueaction">
+                                    <span class="pure-menu-link">Issue Asset</span>
+                                </li>
+                                <li class="pure-menu-item" id="moveaction">
+                                    <span class="pure-menu-link">Move Asset</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pure-u-1-2 pure-g" id="issuewindow">
+                    <div class="pure-u-1 pure-form pure-form-stacked">
+                        <input id="issuepayload" placeholder="Value/Thought"/>
+                        <label for="issuepeermenu">Issuer</label>
+                        <select class="pure-input-1" id="issuepeermenu"/>
+                        </select>
+                        <button class="pure-button pure-button-primary" id="issuebutton">Issue</button>
+                        <button class="pure-button pure-button" id="issuereloadbutton">Reload Peers</button>
+                    </div>
+                    <div class="pure-u-1 tiny">Nep</span>
+                </div>
+                <div class="pure-u-1-2 pure-g" id="movewindow" hidden>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
