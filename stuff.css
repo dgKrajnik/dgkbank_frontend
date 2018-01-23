@@ -9,9 +9,14 @@
     resize: none;
 }
 
+#pageheader {
+    margin-bottom: 0.2em;
+    padding-bottom: 0;
+}
+
 #errorcontainer {
     box-sizing: border-box;
-    margin: 1.5em 0em;
+    margin: 0.2em 0em;
     color: #fff;
     font-size: 1.4em;
     border-top: 3px solid #ae5055;
@@ -22,7 +27,7 @@
 
 #successcontainer {
     box-sizing: border-box;
-    margin: 1.5em 0em;
+    margin: 0.2em 0em;
     color: #fff;
     font-size: 1.4em;
     border-top: 3px solid #4e774f;
