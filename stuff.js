@@ -3,6 +3,7 @@ const get_token_endpoint = "/dgkbank/getdaniels";
 const get_me_endpoint = "/dgkbank/myname";
 const get_peers_endpoint = "/dgkbank/peersnames";
 const post_issue_endpoint = "/dgkbank/issue-asset-request";
+const post_move_endpoint = "/dgkbank/issue-move-request";
 
 let tokens = [];
 let myname = null;
@@ -21,6 +22,22 @@ function initActions() {
     activeAction = actions[actionids[0]];
     activeAction.removeAttribute("hidden");
 }
+
+function parseX500(name) {
+    let bits = name.split(",");
+    let x500 = {}
+    for (let bit of bits) {
+        if (bit.startsWith("O=")) {
+            x500["organisation"] = bit.slice(2);
+        } else if (bit.startsWith("L=")) {
+            x500["locality"] = bit.slice(2);
+        } else if (bit.startsWith("C=")) {
+            x500["country"] = bit.slice(2);
+        }
+    }
+    return x500;
+}
+
 
 function outputError(error) {
     let errorcontainer = document.getElementById("errorcontainer");
@@ -43,18 +60,22 @@ function getAPIMeEndpoint(base, endpoint) {
 
 function getAPIGetTokensEndpoint(base, endpoint) {
     let dd = document.getElementById("apidump");
+    let tokenmenu = document.getElementById("tokenmenu");
+    let movetokenmenu = document.getElementById("movetokenmenu");
     return fetch(`${base}${endpoint}`)
         .then((response) => {return response.json();})
         .then((data) => {
-            tokens = [] //Global tokens
+            tokens = []; //Global tokens
             for (let x of data) {
                 tokens.push(x)
             }
         })
         .then(() => {
             tokenmenu.innerHTML = "";
+            movetokenmenu.innerHTML = "";
             for (let x of tokens) {
                 tokenmenu.add(new Option(x.hash));
+                movetokenmenu.add(new Option(x.hash));
             }
         })
         .catch((reason) => {
@@ -119,19 +140,16 @@ function issueReloadPeers() {
     });
 }
 
-function parseX500(name) {
-    let bits = name.split(",");
-    let x500 = {}
-    for (let bit of bits) {
-        if (bit.startsWith("O=")) {
-            x500["organisation"] = bit.slice(2);
-        } else if (bit.startsWith("L=")) {
-            x500["locality"] = bit.slice(2);
-        } else if (bit.startsWith("C=")) {
-            x500["country"] = bit.slice(2);
+function moveReloadPeers() {
+    getAPIGetTokensEndpoint(base_url, get_token_endpoint);
+    let peerPromise = getPeerGetEndpoint(base_url, get_peers_endpoint);
+    peerPromise.then((peers) => {
+        let tomenu = document.getElementById("movetomenu");
+        tomenu.innerHTML = "";
+        for (let peer of peers) {
+            tomenu.add(new Option(peer));
         }
-    }
-    return x500;
+    });
 }
 
 function issueMakeRequest(base, endpoint) {
@@ -168,8 +186,47 @@ function issueMakeRequest(base, endpoint) {
     });
 }
 
+function moveMakeRequest(base, endpoint) {
+    let token = tokens[document.getElementById("movetokenmenu").selectedIndex];
+    console.log(document.getElementById("movetokenmenu").selectedIndex);
+    console.log(token);
+    console.log(tokens);
+    let peer = document.getElementById("movetomenu").selectedOptions[0].textContent;
+    let issuer = parseX500(peer);
+    let data = {
+        "danielHash": token.hash,
+        "danielindex": token.index,
+        "newOwner": issuer
+    };
+    console.log(data);
+
+    fetch(`${base}${endpoint}`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })})
+    .then((response) => {
+        console.log(response)
+        if (response.status !== 200) {
+            throw Error("Bad status code");
+        }
+    })
+    .catch((reason) => {
+        if (reason.message.startsWith("NetworkError")) {
+            outputError("Network error while making move request.");
+        } else {
+            throw reason;
+        }
+    })
+    .catch((reason) => {
+        outputError("Move request failed for unknown reason: ");
+        outputError("\t" + reason.message);
+    });
+}
+
 function issueOpen() {issueReloadPeers();}
-function moveOpen() {}
+function moveOpen() {moveReloadPeers();}
 
 
 initActions();
@@ -196,6 +253,12 @@ issuereloadbutton.onclick = () => issueReloadPeers();
 let movelink = document.getElementById("moveaction").firstElementChild;
 let moveanchor = replaceWithAnchor(movelink, "moveaction");
 moveanchor.onclick = () => {switchActionMode("move"); moveOpen();};
+let movebutton = document.getElementById("movebutton");
+movebutton.onclick = () => moveMakeRequest(base_url, post_move_endpoint);
+let movereloadbutton = document.getElementById("movereloadbutton");
+movereloadbutton.onclick = () => moveReloadPeers();
+let movereloadtokenbutton = document.getElementById("movereloadtokenbutton");
+movereloadtokenbutton.onclick = () => moveReloadTokens();
 
 getAPIGetTokensEndpoint(base_url, get_token_endpoint).then(() => updateTokenDisplay());
 getAPIMeEndpoint(base_url, get_me_endpoint);
