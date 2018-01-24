@@ -106,7 +106,10 @@ function switchActionMode(action) {
     activeAction = nextAction;
 }
 
+// Used to replace the parent tag with a blank anchor (#) tag.
+// Now it just makes the element clickable instead.
 function replaceWithAnchor(parent, id) {
+    /*
     let anchor = document.createElement("a");
     anchor.setAttribute("href", "#");
     anchor.setAttribute("id", id);
@@ -115,7 +118,9 @@ function replaceWithAnchor(parent, id) {
     parent.innerHTML = "";
     parent.insertAdjacentElement("afterend", anchor);
     parent.remove();
-    return anchor;
+    */
+    parent.style.cursor = "pointer";
+    return parent;
 }
 
 function updateTokenLists() {
@@ -230,7 +235,7 @@ let tokenmenu = document.getElementById("tokenmenu");
 tokenmenu.onchange = (e) => updateTokenDisplay();
 
 let actionlabel = document.getElementById("actionlabel");
-let actionanchor = replaceWithAnchor(actionlabel, "actionanchor");
+let actionanchor = replaceWithAnchor(actionlabel, "actionlabel");
 
 // Issue stuff
 let issuelink = document.getElementById("issueaction").firstElementChild;
