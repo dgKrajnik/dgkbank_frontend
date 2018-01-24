@@ -1,4 +1,4 @@
-const baseUrl ="http://localhost:8081";
+const baseUrl =""; // Only necessary if you're communicating with a remote server.
 const getTokenEndpoint = "/dgkbank/getdaniels";
 const getMeEndpoint = "/dgkbank/myname";
 const getPeersEndpoint = "/dgkbank/peersnames";
@@ -176,7 +176,7 @@ function issueRequest(base, endpoint) {
     issuePromise
         .then((response) => {
             console.log(response)
-            if (response.status !== 200) {
+            if (response.status !== 200 && response.status !== 201) {
                 throw Error("Bad status code");
             }
             outputSuccess("Issue looks like it worked");
@@ -203,7 +203,7 @@ function moveRequest(base, endpoint) {
     movePromise
         .then((response) => {
             console.log(response)
-            if (response.status !== 200) {
+            if (response.status !== 200 && response.status !== 201) {
                 throw Error("Bad status code");
             }
             outputSuccess("Move looks like it worked");
