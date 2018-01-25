@@ -48,17 +48,17 @@ To get a project running successfully you have to follow the given steps:
 ### Appearance of Web Page:
 Listing of information about what's on the Web page is given below:
 
-**1** The page header is the identity of the node you're connected to.
+**1.** The page header is the identity of the node you're connected to.
 
-**2**  The left panel displays tokens this node is aware of.
+**2.**  The left panel displays tokens this node is aware of.
 
-**3**  The right panel allows you to perform actions on behalf of this node.
-       
-  3.1  You may issue a new token.
+**3.**  The right panel allows you to perform actions on behalf of this node.
+
+   - You may issue a new token.
   
-  3.2   You may move a token you own to another node. 
+   - You may move a token you own to another node. 
   
-  ![Diagram](dgk frontend.jpg)
+  ![Diagram](dgkfrontend.jpg)
 
 
 # Requests
