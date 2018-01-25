@@ -1,17 +1,18 @@
 # DGK Bank Frontend
 
 ### Introduction: 
-- This shows the Frontend of DGK Bank.
+- This shows the Frontend of **DGK Bank**.
 - Front end of DGk Bank is for requesting and moving tokens in Corda Network.
 - Designed for the Administrators of the organizations.
 
 ### Getting Started: 
-- Adjust the string at the top of the file to your project 
+- Adjust the strings at the top of the file to your project 
 - And than open index.html 
 
 
 ### Endpoints
 All the endpoints given below and the base URL, are constants.
+
 
 - getTokenEndpoint
 ```
@@ -36,23 +37,16 @@ All the endpoints given below and the base URL, are constants.
 /dgkbank/issue-move-request
 ```
 
-### Helpful in:
-
-- Flow framework to manage communication and negotiation between participants
-- In Peer-to-peer network of nodes.
-- Notary infrastructure to validate uniqueness and sequencing of transactions without global broadcast.
-
 ### Installing: 
 To get a project running successfully you have to follow the given steps: 
  
 ##### STEPS- 
  
-- Open the page in browser 
+- Open the page in browser.
 - Ensure that you will get frontend page in return. 
 
-### To Run the Web page:
-
-To run the page you have to follow given steps:
+### Appearance of Web Page:
+Listing of information about what's on the Web page is given below:
 
 **1** The page header is the identity of the node you're connected to.
 
@@ -64,12 +58,8 @@ To run the page you have to follow given steps:
   
   3.2   You may move a token you own to another node. 
   
-  ![Diagram](dgk frontend.jpeg)
+  ![Diagram](dgk frontend.jpg)
 
-
-
-### Endpoints
-All the endpoints, and the base URL, are constants.
 
 # Requests
 - The final requests made to each endpoint (And the functions that stuff.js will call) are specified in endpoints.js.
@@ -77,12 +67,12 @@ All the endpoints, and the base URL, are constants.
 
 
 ### Credits: 
-[**Daniel Krajnik**](daniel.krajnik@bcstechnology.com.au
+[**Daniel Krajnik**](daniel.krajnik@bcstechnology.com.au)
 
 
 ### Acknowledgment: 
 - DGK Bank
-- Corda
+- [Corda](https://www.corda.net/)
 
 
 
