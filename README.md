@@ -58,7 +58,7 @@ Listing of information about what's on the Web page is given below:
   
    - You may move a token you own to another node. 
   
-  ![Diagram](dgkfrontend.jpg)
+  ![Diagram](dgk%20frontend.jpg)
 
 
 # Requests
