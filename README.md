@@ -61,7 +61,7 @@ Listing of information about what's on the Web page is given below:
   ![Diagram](dgk%20frontend.jpg)
 
 
-# Requests
+### Requests
 - The final requests made to each endpoint (And the functions that stuff.js will call) are specified in endpoints.js.
 - There are also a couple of constructors for the data payloads that will head to these requests. 
 
